@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Siddhesh F3W1 PROJECT</title>
+
+    <style>
+      body {
+        background-color: black;
+        color: white;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+      }
+      .container {
+        width: fit-content;
+        padding-top: 5%;
+        padding-left: 5%;
+      }
+      .change {
+        display: flex;
+        gap: 1rem;
+      }
+      .btn {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 1rem;
+      }
+      .heading {
+        font-size: 3rem;
+      }
+      p {
+        font-size: 1.5rem;
+      }
+      button {
+        all: unset;
+        background-color: whitesmoke;
+        color: black;
+        padding: 0.6rem 1rem;
+      }
+      .error {
+        margin-top: -1rem;
+        display: none;
+        color: tomato;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <div class="heading">Counter using HTML</div>
+        <div>
+          <div class="count">
+            <div class="change">
+              <p>Your Current Count is:</p>
+              <p id="countDisplay">0</p>
+            </div>
+            <div class="error"><p>Error: Cannot go below 0</p></div>
+          </div>
+        </div>
+
+        <div class="btn">
+          <button id="increment">Increment</button>
+          <button id="decrement">Decrement</button>
+          <button id="clear">Clear</button>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      const increment = document.getElementById("increment");
+      const decrement = document.getElementById("decrement");
+      const clear = document.getElementById("clear");
+      const countDisplay = document.getElementById("countDisplay");
+      const error = document.getElementsByClassName("error")[0]; // Select the first element with class "error"
+
+      let count = 0;
+
+      increment.addEventListener("click", () => updateCount(1));
+      decrement.addEventListener("click", () => updateCount(-1));
+
+      function updateCount(change) {
+        let count = parseInt(countDisplay.textContent); // Get current count value
+
+        count += change;
+        if (count <= 0) {
+          countDisplay.textContent = "0";
+        } else {
+          countDisplay.textContent = count;
+        }
+
+        if (count > 0) {
+          error.style.display = "none";
+        } else {
+          error.style.display = "block";
+        }
+      }
+      clear.addEventListener("click", () => {
+        count = 0;
+        countDisplay.textContent = count;
+      });
+    </script>
+  </body>
+</html>
